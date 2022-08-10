@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Results page{% endblock %}
+{% block content  %}
+
+
+<div class="result">
+	{% for x in range(0,size) %}
+	<img src= {{ tweet.get('image')[x] }} alt="alternatetext">
+
+	<p>{{ tweet.get('name')[x] }}</p>
+
+	
+	{% endfor %}
+
+	
+
+	
+	
+	
+	
+	
+	
+</div>
+
+{% endblock %}

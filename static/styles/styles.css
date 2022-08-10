@@ -1,0 +1,71 @@
+
+
+.service-list {
+    list-style-type: none;
+    margin:5px;
+    padding-left: 50px;
+    float: left;
+    display: inline-block;
+
+}
+
+
+.service-list p {
+    text-align: left; 
+    margin: 0; 
+    padding: 0;
+
+}
+
+
+
+
+
+
+
+.search__field {
+	margin: auto;
+	text-align: center;
+	color:  white;
+}
+
+.title {
+	text-align: center;
+	color:  white;
+	padding: 100px;
+}
+
+.big {
+  background-image: url('../images/bg.png');
+  height: 800px;
+
+}
+
+.each_song {
+
+	position:  relative;
+	top:  0;
+	left: 0;
+	display: inline-block;
+	margin: 10px;
+}
+.play {
+	position: relative;
+	max-width: 100px;
+	max-height: 100px;
+	top:  20px;
+	left: -205px;
+	
+}
+.album_cover {
+	max-width: 300px;
+	max-height: 300px;
+	position:  relative;
+	top: 0;
+	left: 0;
+}
+.album_cover:hover {
+	filter: grayscale(100%);
+
+	transition:  filter 0.5s ease-in-out;
+}

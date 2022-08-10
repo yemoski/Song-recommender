@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Results page{% endblock %}
+{% block content  %}
+
+
+	<div class="result">
+		{% for x in result %}
+		<ul>
+			<div "each_song">
+				<li class="service-list">
+					<img class='album_cover' src= {{ x.get('image') }} alt="alternatetext">
+					<a href={{ x.get('preview') }} >
+						<img class='play' src="../static/images/play.png">
+					</a>
+					{% if x.get('name')|length > 35 %}
+						<p>{{ x.get('name')[:35] +"..." }}</p>
+					{% else %}
+						<p>{{ x.get('name') }}</p>
+					{% endif %}
+					<button class='open_in_spotify'> Open in Spotify</button>
+				</li>
+			</div>		
+		</ul>
+	</div>
+
+	
+		{% endfor %}
+
+	
+
+	
+	
+	
+	
+	
+	
+
+
+{% endblock %}

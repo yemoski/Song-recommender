@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Home page{% endblock %}
+{% block content  %}
+
+
+    <div class="big">
+         <h1 class="title">Get Latest Songs</h1>
+      <form class="search" method="post" action="{{ url_for('search') }}">
+      <div class="search__field">
+            <label class="search__label" for="text">Search for song: </label>
+            <input type="text" id="text" name="varname">
+            <input type="submit" name="submit">
+            <span class="validity"></span>
+        </div>
+      
+    </div>
+
+     
+
+
+
+   
+     </div>
+   </form>
+     
+{% endblock %}
+
+      

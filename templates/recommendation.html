@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Recommendation page{% endblock %}
+{% block content  %}
+
+
+    <div class="big">
+         <h1 class="title">Recommend me a song!</h1>
+      <form class="search" method="post" action="{{ url_for('genre_recommendation_result') }}">
+      <div class="search__field">
+            <label class="search__label" for="text">Enter a song genre(Random for any random song): </label>
+            <input type="text" id="text" name="genre">
+            <label for="cars">Filter by:</label>
+            <select id="filter" name="filter">
+                <option value="most_popular">Popularity(Most Popular)</option>
+                <option value="new">Date Released (New)</option>
+                <option value="least_popular">Populariy (Least Popular)</option>
+                <option value="old">Date Released (Old)</option>
+            </select>
+            <input type="submit" name="submit">
+            <span class="validity"></span>
+        </div>
+      
+    </div>
+
+     
+
+
+
+   
+     </div>
+   </form>
+     
+{% endblock %}
