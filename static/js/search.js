@@ -1,3 +1,3 @@
-$( "open_in_spotify" ).click(function() {
-  alert( "Handler for .click() called." );
+document.getElementById("submit_button").addEventListener("click", () => {
+  document.getElementById("result_container").focus();
 });

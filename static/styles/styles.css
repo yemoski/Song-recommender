@@ -8,6 +8,19 @@
     display: inline-block;
 
 }
+.result {
+	background-color:#BC986A ;
+}
+.navbar {
+	background-color:black ;
+
+}
+.nav-link{
+	color: white;
+}
+.navbar-brand {
+	color: white;
+}
 
 
 .service-list p {
@@ -19,8 +32,13 @@
 
 
 
+.search__label {
+	color: black;
+}
 
-
+.filter__by {
+	color: black;
+}
 
 
 .search__field {
@@ -31,13 +49,19 @@
 
 .title {
 	text-align: center;
-	color:  white;
+	color:  black;
 	padding: 100px;
 }
 
 .big {
-  background-image: url('../images/bg.png');
-  height: 800px;
+	position: absolute;
+  background-color:#BC986A ;
+  display: block;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  
+
 
 }
 

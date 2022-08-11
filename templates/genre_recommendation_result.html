@@ -13,21 +13,21 @@
 						<img class='play' src="../static/images/play.png">
 					</a>
 					{% if x.get('name')|length > 35 %}
-						<p>{{ x.get('name')[:35] +"..." }}</p>
+						<b><p>{{ x.get('name')[:35] +"..." }}</p></b>
 					{% else %}
-						<p>{{ x.get('name') }}</p>
+						<b><p>{{ x.get('name') }}</p></b>
 					{% endif %}
 					<button class='open_in_spotify'> Open in Spotify</button>
 				</li>
 			</div>		
 		</ul>
-	</div>
+	
 
 	
 		{% endfor %}
-
+</div>
 	
-
+		
 	
 	
 	

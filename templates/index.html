@@ -1,28 +1,56 @@
 {% extends "base.html" %}
-{% block title %}Home page{% endblock %}
+{% block title %}Recommendation page{% endblock %}
 {% block content  %}
 
 
     <div class="big">
-         <h1 class="title">Get Latest Songs</h1>
-      <form class="search" method="post" action="{{ url_for('search') }}">
+         <h1 class="title"><b>Recommend me a song!</b></h1>
+      <form class="search" method="post" action="{{ url_for('home') }}">
       <div class="search__field">
-            <label class="search__label" for="text">Search for song: </label>
-            <input type="text" id="text" name="varname">
-            <input type="submit" name="submit">
+            <label class="search__label" for="text">Enter a song genre(Random for any random song): </label>
+            <input type="text" id="text" name="genre">
+            <label class='filter__by' for="cars">Filter by:</label>
+            <select id="filter" name="filter">
+                <option value="most_popular">Popularity(Most Popular)</option>
+                <option value="new">Date Released (New)</option>
+                <option value="least_popular">Populariy (Least Popular)</option>
+                <option value="old">Date Released (Old)</option>
+            </select>
+            <input id='submit_button' type="submit" name="submit">
             <span class="validity"></span>
         </div>
-      
+    </form>
+        {% if result %}
+        <div id='result_container' class="result">
+            <h1 class="title"><b>Search Results for '{{text}}'</b></h1>
+        {% for x in result %}
+        <ul>
+            <div "each_song">
+                <li class="service-list">
+                    <img class='album_cover' src= {{ x.get('image') }} alt="alternatetext">
+                    <a href={{ x.get('preview') }} target="_blank" >
+                        <img class='play' src="../static/images/play.png">
+                    </a>
+                    {% if x.get('name')|length > 35 %}
+                        <b><p>{{ x.get('name')[:35] +"..." }}</p></b>
+                    {% else %}
+                        <b><p>{{ x.get('name') }}</p></b>
+                    {% endif %}
+                   <!-- <button class='open_in_spotify'> Open in Spotify</button> -->
+                </li>
+            </div>      
+        </ul>
+    
+
+    
+        {% endfor %}
+</div>
+{% endif %}
     </div>
 
+ 
      
-
-
-
    
-     </div>
-   </form>
-     
+ 
 {% endblock %}
 
-      

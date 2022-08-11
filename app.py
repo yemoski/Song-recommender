@@ -4,28 +4,29 @@ import Spotify
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods = ["GET", "POST"])
 def home():
-	return render_template("index.html",list=["david","derin","yemisi","ade","dami"])
+	if request.method == "POST":
+		if request.form.get('filter') == 'most_popular':
+
+			text = request.form.get("genre")
+			result = Spotify.get_popular_song(text)
+			return render_template("index.html",result = result, text = text)
+		elif request.form.get('filter') == 'least_popular':
+			text = request.form.get('genre')
+			result = Spotify.get_least_popular_song(text)
+			return render_template("index.html",result = result, text=text)
+	return render_template("index.html",result=None, text=None )
 
 @app.route("/contact_us")
 def contact():
 	return render_template("contact_us.html")
 
 
-@app.route("/results", methods = ["GET", "POST"])
-def search():
-	if request.method == "POST":
-		text = request.form.get("varname")
-		tweet = Spotify.get_song(text)
-		size = len(tweet.get('name'))
-		return render_template("results.html",tweet = tweet, size=size)
-
-@app.route("/recommendation/")
-def recommendation():
-	return render_template("recommendation.html")
 
 
+
+""""
 @app.route("/recommendation_result/", methods = ["GET", "POST"])
 def genre_recommendation_result():
 	if request.method == "POST":
@@ -38,7 +39,7 @@ def genre_recommendation_result():
 			result = Spotify.get_least_popular_song(text)
 			return render_template("genre_recommendation_result.html",result = result)
 
-	
+	"""
 
 
 
