@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, url_for
 import Spotify
+from pprint import pprint
 
 
 app = Flask(__name__)
@@ -11,6 +12,7 @@ def home():
 
 			text = request.form.get("genre")
 			result = Spotify.get_popular_song(text)
+			
 			return render_template("index.html",result = result, text = text)
 		elif request.form.get('filter') == 'least_popular':
 			text = request.form.get('genre')

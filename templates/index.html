@@ -6,10 +6,14 @@
     <div class="big">
          <h1 class="title"><b>Recommend me a song!</b></h1>
       <form class="search" method="post" action="{{ url_for('home') }}">
+        <div class="examples">
+            <p>Genre could be Afro,Grime,Uk Rap,Pop, Country etc </p>
+            <p> Artist name could be Central cee,Dave,Wizkid,JHus etc</p>
+        </div>   
       <div class="search__field">
-            <label class="search__label" for="text">Enter a song genre('Random' for any random song): </label>
+            <label class="search__label" for="text"><b>Enter a song genre('Random' for any random song): </b></label>
             <input type="text" id="text" name="genre">
-            <label class='filter__by' for="cars">Filter by:</label>
+            <label class='filter__by' for="cars"><b>Filter by:</b></label>
             <select id="filter" name="filter">
                 <option value="most_popular">Popularity(Most Popular)</option>
                <!-- <option value="new">Date Released (New)</option> -->

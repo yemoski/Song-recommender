@@ -50,7 +50,11 @@
 .title {
 	text-align: center;
 	color:  black;
-	padding: 100px;
+	padding: 20px;
+}
+
+.examples {
+	text-align: center;
 }
 
 .big {
