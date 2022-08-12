@@ -1,4 +1,5 @@
 import spotipy
+import random
 from spotipy.oauth2 import SpotifyClientCredentials
 import config
 
@@ -31,16 +32,33 @@ def get_popular_song(search_str):
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=config.client_id,client_secret=config.client_secret))
 
     list = []
-    result = sp.search(search_str, limit=50)
-    result = result['tracks']['items']
 
-    for x in result:
-        data = {'name': x.get('name'), 'image': x.get('album').get('images')[0].get("url"), "popularity":x.get('popularity'), 'url': x.get('album').get('external_urls').get('spotify'),'preview': x.get('preview_url')}
-        list.append(data)
+    if search_str.lower()=='random':
 
-    #print(list)
+        randomsongs = ['central cee','dave','omah lay', 'uk rap', 'afro beats', 'bnxn', 'wizkid', 'Burnaboy']
+        random_item = random.choice(randomsongs)
+        
+        result = sp.search(random_item, limit=50)
+        result = result['tracks']['items']
 
-    ordered_list = sorted(list, key= lambda i:i['popularity'],reverse=True)
+        for x in result:
+            data = {'name': x.get('name'), 'image': x.get('album').get('images')[0].get("url"), "popularity":x.get('popularity'), 'url': x.get('album').get('external_urls').get('spotify'),'preview': x.get('preview_url')}
+            list.append(data)
+
+        #print(list)
+
+        ordered_list = sorted(list, key= lambda i:i['popularity'],reverse=True)
+    else: 
+        result = sp.search(search_str, limit=50)
+        result = result['tracks']['items']
+        
+
+        for x in result:
+            data = {'name': x.get('name'), 'image': x.get('album').get('images')[0].get("url"), "popularity":x.get('popularity'), 'url': x.get('album').get('external_urls').get('spotify'),'preview': x.get('preview_url')}
+            list.append(data)
+
+       
+        ordered_list = sorted(list, key= lambda i:i['popularity'],reverse=True)
 
 
 
@@ -57,8 +75,7 @@ def get_least_popular_song(search_str):
         data = {'name': x.get('name'), 'image': x.get('album').get('images')[0].get("url"), "popularity":x.get('popularity'), 'url': x.get('album').get('external_urls').get('spotify'),'preview': x.get('preview_url')}
         list.append(data)
 
-    #print(list)
-
+    
     ordered_list = sorted(list, key= lambda i:i['popularity'])
 
     return ordered_list
