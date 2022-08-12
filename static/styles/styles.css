@@ -9,7 +9,7 @@
 
 }
 .result {
-	background-color:#BC986A ;
+	background-color:#1db954 ;
 }
 .navbar {
 	background-color:black ;
@@ -59,7 +59,7 @@
 
 .big {
 	position: absolute;
-  background-color:#BC986A ;
+  background-color:#1db954 ;
   display: block;
   overflow: auto;
   width: 100%;

@@ -31,15 +31,36 @@
         <ul>
             <div "each_song">
                 <li class="service-list">
-                    <img class='album_cover' src= {{ x.get('image') }} alt="alternatetext">
-                    <a href={{ x.get('preview') }} target="_blank" >
-                        <img class='play' src="../static/images/play.png">
-                    </a>
-                    {% if x.get('name')|length > 35 %}
-                        <b><p>{{ x.get('name')[:35] +"..." }}</p></b>
+                    <img  class='album_cover' src= {{ x.get('image') }} alt="alternatetext">
+                    {% if x.get('preview')!=None %}
+                        <a class="link_target" href={{ x.get('preview') }} target="_blank" >
+                            <img id='play_button' class='play' src="../static/images/play.png">
+                        </a>
+                        {% if x.get('name')|length > 35 %}
+                            <b><p>{{ x.get('name')[:35] +"..." }}</p></b>
+                             
+                        {% else %}
+                            <b><p>{{ x.get('name') }}</p></b>
+                        {% endif %}
                     {% else %}
-                        <b><p>{{ x.get('name') }}</p></b>
+
+                        <a  class="link_target" target="_blank" >
+                            <img onclick='myfunction()' id='play_button'  class='play' src="../static/images/play.png">
+                            <script type="text/javascript">
+                                function myfunction(){
+                                    alert('Sorry preview for this song is unavailable');
+                                }
+                            </script>
+                        </a>
+                        {% if x.get('name')|length > 35 %}
+                            <b><p>{{ x.get('name')[:35] +"..." }}</p></b>
+                        {% else %}
+                            <b><p>{{ x.get('name') }}</p></b>
+                        {% endif %}
                     {% endif %}
+
+
+
                    <!-- <button class='open_in_spotify'> Open in Spotify</button> -->
                 </li>
             </div>      
