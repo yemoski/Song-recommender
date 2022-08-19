@@ -6,7 +6,7 @@ from datetime import timedelta
 
 app = Flask(__name__)
 app.secret_key = 'spotify'
-app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://wpzofaarahpesm:484bbff9823132b5f22578dfffa95bce4452dde87b30b5aef2375c45a615e5e5@ec2-54-85-56-210.compute-1.amazonaws.com:5432/deofkbvcf6h3pd' #table name is song_recommentations 
+app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://wpzofaarahpesm:484bbff9823132b5f22578dfffa95bce4452dde87b30b5aef2375c45a615e5e5@ec2-54-85-56-210.compute-1.amazonaws.com:5432/deofkbvcf6h3pd' #table name is song_recommentations 
 app.permanent_session_life = timedelta(minutes=10)
 
 
@@ -75,4 +75,5 @@ def friends():
 
 
 if __name__ == "__main__":
+
 	app.run(debug=True) #debug = true so we do not need to re run the server anytime we make changes
