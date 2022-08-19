@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Results page{% endblock %}
+{% block content  %}
+
+<div class="friends_main">
+			{% with messages = get_flashed_messages() %}
+				  {% if messages %}
+				    {% for message in messages %}
+				    <div class="error">
+				    	 <p>{{ message }}</p>
+				    </div> 
+				    {% endfor %}
+				  {% endif %}
+				{% endwith %}
+	<div class="friends_list">
+		<form action="" method="POST">
+			<h1>Recommend songs to your friends</h1>
+		  	<div class="text_bar">
+			  	<input type="text" id="user_name" name="user_name" placeholder="Enter Your Name">
+			  	<input type="text" id="song_name" name="song_name" placeholder="Enter Song Name">
+			  	<input type="text" id="artist_name" name="artist_name" placeholder="Enter Artist Name">
+			  	
+			  		<input id="add_song"  class="add_name" type="submit" name="submit">
+			  			
+			  
+		  
+		 </div>
+		</form>
+		  
+	<hr >
+  	<div id='recommendation_container' class="recommendation_container">
+
+  		{%if recommendations %}
+  		{%for item in recommendations %}
+  		<div class="recommendation_name">
+  			<p>{{item.user_name}} Recommends {{item.song_name}} by {{item.artist_name}}</p>
+
+  		</div>
+  		{% endfor %}
+  		{% endif %}
+  	</div>
+		  
+		  	
+		 
+          
+			
+	</div>
+	
+</div>
+
+{% endblock %}
