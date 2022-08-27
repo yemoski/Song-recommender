@@ -164,6 +164,24 @@
 
 }
 
+.each_new_recommendation{
+	display: block;
+	margin-left: 30px;
+	margin-bottom: 20px;
+}
+
+.new_recommendation_name{
+	background-color: white;
+	color: black;
+	width: 500px;
+	height: 30px;
+	margin-bottom: 10px;
+	margin-left: -40px;
+	border-radius: 0.4rem;
+	display: inline-block;
+
+}
+
 
 .error{
 	background-color:#FFCCCB  ;
@@ -171,4 +189,79 @@
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: -86px;
+}
+.album_cover_image{
+	display: inline-block;
+}
+
+.new_album_cover {
+	max-width: 300px;
+	max-height: 115px;
+	position:  relative;
+	top: 0;
+	left: 0;
+}
+.new_album_cover:hover {
+	filter: grayscale(100%);
+
+	transition:  filter 0.5s ease-in-out;
+}
+.new_play {
+	position: relative;
+	max-width: 100px;
+	max-height: 50px;
+	top:  4px;
+	left: -92px;
+	
+}
+
+
+
+
+/******modal.html*****//
+
+.modal {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	position: absolute;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+.modal_container{
+	overflow: auto;
+	background-color:white ;
+	width: 1300px;
+	height: 500px;
+	margin-left: 70px;
+	margin-top: 100px;
+
+}
+.modal_recommendation_results{
+	margin-left: 150px;
+	display: inline-block;
+}
+.modal_header {
+	margin-top: 50px;
+	text-align: center;
+	display: inline-block;
+	margin-left: 350px;
+}
+
+.modal_choose_song p{
+	position: relative;
+	top: -130px;
+	font-size: 80px;
+	left: 30px;
+	color: #007bff;
+}
+
+.modal_song_name {
+	margin-top: -100px;
+}
+
+.modal_add_song{
+	display: inline-block;
 }

@@ -3,6 +3,8 @@
 {% block content  %}
 
 <div class="friends_main">
+		{% block modal %}
+	{% endblock %}
 			{% with messages = get_flashed_messages() %}
 				  {% if messages %}
 				    {% for message in messages %}
@@ -22,14 +24,29 @@
 			  	
 			  		<input id="add_song"  class="add_name" type="submit" name="submit">
 			  			
-			  
 		  
 		 </div>
 		</form>
 		  
 	<hr >
-  	<div id='recommendation_container' class="recommendation_container">
 
+
+  	<div id='recommendation_container' class="recommendation_container">
+  		<div class="each_new_recommendation">
+  			<div class="album_cover_image">
+  				<img  class='new_album_cover' src= 'https://i.scdn.co/image/ab67616d0000b2739ae93c82da7937dfea03ffe2' alt="alternatetext">
+  				<a class="link_target" href='https://p.scdn.co/mp3-preview/a19f526f28bd48d87bcfd0749fd2bb502b7821ef?cid=a5f27ad6dc1a4acabff90a9475c715f4' target="_blank" >
+				<img id='play_button' class='new_play' src="../static/images/play.png">
+              </a>
+  			</div>
+	  		<div class="new_recommendation_name">
+	  			<p>No words</p>
+	  			
+
+	  		</div>
+  		</div>
+
+  		
   		{%if recommendations %}
   		{%for item in recommendations %}
   		<div class="recommendation_name">

@@ -1,11 +1,68 @@
-var add_song = document.getElementById('add_song');
+var add_song = document.getElementById('modal_choose_song');
 var container = document.getElementById('recommendation_container');
-var song_name = document.getElementById('song_name');
+var song_name = document.getElementById('modal_song_name');
 var user_name = document.getElementById('user_name');
 var artist_name = document.getElementById('artist_name');
 
+
+
+
+document.addEventListener('click', function(e) {
+    e = e || window.event;
+    var target = e.target || e.srcElement,
+    target = $(target).parent().parent().parent().parent();
+    text = $(target).attr('id');
+    //text = target.textContent || target.innerText;  
+    if (text.length <=2 ){
+      datas = recommendation[text]
+      name = datas['name'];
+      console.log(name);
+      $.ajax({
+      url: '/test',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(datas) // converts js value to JSON string
+      });
+      
+      
+    }
+}, false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
+
 add_song.addEventListener('click', ()=> {
+
+  alert(song_name.value);
+
+
+  
   var div = document.createElement('div');
   div.classList.add('recommendation_name');
   div.innerHTML =`
@@ -14,30 +71,11 @@ add_song.addEventListener('click', ()=> {
   container.appendChild(div);
   //  song_name.value = "";
    // user_name.value = "";
-   // artist_name.value = "";
+   // artist_name.value = ""; 
  
   });
 
-
-
-
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

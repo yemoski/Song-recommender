@@ -1,0 +1,61 @@
+{% extends "friends.html" %}
+{% block modal %}
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal_container">
+		<div class="modal_header">
+			<h2>Choose a song to recommend!</h2>
+		</div>
+		<input id="modal_add_song"  class="add_song modal_add_song" type="submit" name="Done">
+
+	{% if modal_recommendations %}
+	{% for i in range(0, modal_recommendations|length) %}
+	<ul>
+		<li class="service-list">
+			<div id='{{ i|safe }}'  class="each_song">
+					<div class="modal_recommendation_results">
+						<div class="album_cover_image">
+			  				<img  class='new_album_cover' src= '{{ modal_recommendations[i].get('image') }}' alt="alternatetext">
+			  				<div  class="modal_choose_song">
+			  					<p id="{{'modal_choose_song'}}" >+</p>
+			  				</div>
+			  				
+			  			</div>
+
+			  			{% if modal_recommendations[i].get('name')|length > 10 %}
+			  			<div class="modal_song_name">
+			  				<b><p id="{{'modal_song_name' }}"+i>{{ modal_recommendations[i].get('name')[:10] +"..." }}</p></b>
+			  			</div>
+			            {% else %}
+			            <div class="modal_song_name">
+			            	<b><p id="{{'modal_song_name' }}"+i>{{ modal_recommendations[i].get('name') }}</p></b>
+			            </div>      
+			            {% endif %}
+			  		
+					</div>
+			</div>
+
+		</li>
+		
+	</ul>
+	
+	{% endfor %}
+	{% endif %}
+	
+
+
+	</div>
+	
+			
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+	$(document).ready(function(){
+		console.log('window is loaded');
+		$('#exampleModal').modal('show');
+	})
+
+	var recommendation = {{ modal_recommendations|tojson }};
+
+</script>
+{% endblock %}

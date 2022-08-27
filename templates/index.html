@@ -7,8 +7,8 @@
          <h1 class="title"><b>Recommend me a song!</b></h1>
       <form class="search" method="post" action="{{ url_for('home') }}">
         <div class="examples">
-            <p>Genre could be Afro,Grime,Uk Rap,Pop, Country etc </p>
-            <p> Artist name could be Central cee,Dave,Wizkid,JHus etc</p>
+            <p>Genre could be Afro,Grime,Uk Rap,Pop,Country etc </p>
+            <p> Artist name could be Central cee,Solatido,Dave,Wizkid etc</p>
         </div>   
       <div class="search__field">
             <label class="search__label" for="text"><b>Enter a song genre('Random' for any random song): </b></label>
@@ -60,8 +60,10 @@
                     {% endif %}
 
 
-
-                   <!-- <button class='open_in_spotify'> Open in Spotify</button> -->
+                    <a href="{{ x.get('url') }}" target="_blank">
+                        <button class='open_in_spotify'> Open in Spotify</button>
+                    </a>
+                   
                 </li>
             </div>      
         </ul>
