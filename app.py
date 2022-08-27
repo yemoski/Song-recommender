@@ -22,9 +22,9 @@ class recommendations(db.Model):
 	user_name = db.Column(db.String(40),  nullable=True)
 	song_name = db.Column(db.String(40), nullable=True)
 	artist_name = db.Column(db.String(40), nullable=True)
-	image = db.Column(db.String(140), nullable=True)
-	preview = db.Column(db.String(140), nullable=True)
-	url = db.Column(db.String(140), nullable=True)
+	image = db.Column(db.Text(), nullable=True)
+	preview = db.Column(db.Text(), nullable=True)
+	url = db.Column(db.Text(), nullable=True)
 
 	def __init__(self,user_name,song_name,artist_name):
 		self.user_name = user_name
