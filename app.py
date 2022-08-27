@@ -22,17 +22,20 @@ class recommendations(db.Model):
 	user_name = db.Column(db.String(40),  nullable=True)
 	song_name = db.Column(db.String(40), nullable=True)
 	artist_name = db.Column(db.String(40), nullable=True)
-	image = db.Column(db.Text(), nullable=True)
-	preview = db.Column(db.Text(), nullable=True)
-	url = db.Column(db.Text(), nullable=True)
+	song_image = db.Column(db.Text(), nullable=True)
+	song_preview = db.Column(db.Text(), nullable=True)
+	song_url = db.Column(db.Text(), nullable=True)
 
-	def __init__(self,user_name,song_name,artist_name):
+	def __init__(self,user_name,song_name,artist_name, image,preview, url):
 		self.user_name = user_name
 		self.song_name = song_name
 		self.artist_name = artist_name
+		self.song_image = image
+		self.song_preview = preview
+		self.song_url = url
 
 	def __repr__(self):
-		return f'<user_name: {self.user_name} song_name: {self.song_name} artist_name: {self.artist_name} image: {self.image} preview: {self.preview} url: {self.url}'
+		return f'<user_name: {self.user_name} song_name: {self.song_name} artist_name: {self.artist_name} image: {self.song_image} preview: {self.song_preview} url: {self.song_url}'
 
 @app.route("/", methods = ["GET", "POST"])
 def home():
