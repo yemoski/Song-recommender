@@ -12,11 +12,12 @@ document.addEventListener('click', function(e) {
     var target = e.target || e.srcElement,
     target = $(target).parent().parent().parent().parent();
     text = $(target).attr('id');
+    console.log(user_name.innerHTML);
     //text = target.textContent || target.innerText;  
     if (text.length <=2 ){
       datas = recommendation[text]
-      name = datas['name'];
-      console.log(name);
+      datas['user_name'] = user_name.innerHTML;
+      
       $.ajax({
       url: '/test',
       type: 'POST',

@@ -21,21 +21,19 @@ class recommendations(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	user_name = db.Column(db.String(40),  nullable=True)
 	song_name = db.Column(db.String(40), nullable=True)
-	artist_name = db.Column(db.String(40), nullable=True)
 	song_image = db.Column(db.Text(), nullable=True)
 	song_preview = db.Column(db.Text(), nullable=True)
 	song_url = db.Column(db.Text(), nullable=True)
 
-	def __init__(self,user_name,song_name,artist_name, image,preview, url):
+	def __init__(self,user_name,song_name, image,preview, url):
 		self.user_name = user_name
 		self.song_name = song_name
-		self.artist_name = artist_name
 		self.song_image = image
 		self.song_preview = preview
 		self.song_url = url
 
 	def __repr__(self):
-		return f'<user_name: {self.user_name} song_name: {self.song_name} artist_name: {self.artist_name} image: {self.song_image} preview: {self.song_preview} url: {self.song_url}'
+		return f'<user_name: {self.user_name} song_name: {self.song_name} song_image: {self.song_image} song_preview: {self.song_preview} song_url: {self.song_url}'
 
 @app.route("/", methods = ["GET", "POST"])
 def home():
@@ -72,6 +70,7 @@ def friends():
 		artist_namee = request.form['artist_name']
 		user_namee = request.form['user_name']
 		result = None
+		
 		if song_namee == '':
 			flash('Please enter a song name')
 			result = None
@@ -82,24 +81,26 @@ def friends():
 			flash('please enter your name')
 			result = None
 		elif user_namee != '' and song_namee!='' and artist_namee!='':
-			recomendation = recommendations(user_namee,song_namee,artist_namee)
+			#recomendation = recommendations(user_namee,song_namee,artist_namee)
 			text = song_namee + ' ' + artist_namee
 			result = Spotify.get_popular_song(text)
 			#pprint(result)
 			#db.session.add(recomendation)
 			#db.session.commit()
 
-		return render_template('modals.html', modal_recommendations=result)
+		return render_template('modals.html', modal_recommendations=result, user_name=user_namee)
 
 
 
-	
-	return render_template("friends.html", recommendations=recommendations.query.all(), recommendation_result=result)
+	database = recommendations.query.all()
+	database.reverse()
+	print(database)
+	return render_template("friends.html", recommendations=database, recommendation_result=result)
 
 
 @app.route('/modal', methods=['POST'])
 def modal():
-	#output = request.get_json()
+
 	
 	return render_template('modals.html')
 
@@ -107,8 +108,14 @@ def modal():
 def test():
 	output = request.get_json()
 	print('output here')
-	pprint(output)
+	#pprint(output)
+	
+	recommendation = recommendations(output['user_name'], output['name'], output['image'],output['preview'],output['url'])
+	db.session.add(recommendation)
+	db.session.commit()
 	return render_template('test.html')
+
+	
 if __name__ == "__main__":
 
 	app.run(debug=True) #debug = true so we do not need to re run the server anytime we make changes

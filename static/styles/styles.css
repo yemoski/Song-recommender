@@ -247,7 +247,12 @@
 	margin-top: 50px;
 	text-align: center;
 	display: inline-block;
-	margin-left: 350px;
+	margin-left: 200px;
+}
+
+
+.modal_header h2{
+	display: inline-block;
 }
 
 .modal_choose_song p{

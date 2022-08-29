@@ -4,7 +4,7 @@
 
 <div class="friends_main">
 		{% block modal %}
-	{% endblock %}
+		{% endblock %}
 			{% with messages = get_flashed_messages() %}
 				  {% if messages %}
 				    {% for message in messages %}
@@ -29,32 +29,28 @@
 		</form>
 		  
 	<hr >
-
+	{%if recommendations %}
+  	{%for item in recommendations %}
 
   	<div id='recommendation_container' class="recommendation_container">
   		<div class="each_new_recommendation">
   			<div class="album_cover_image">
-  				<img  class='new_album_cover' src= 'https://i.scdn.co/image/ab67616d0000b2739ae93c82da7937dfea03ffe2' alt="alternatetext">
-  				<a class="link_target" href='https://p.scdn.co/mp3-preview/a19f526f28bd48d87bcfd0749fd2bb502b7821ef?cid=a5f27ad6dc1a4acabff90a9475c715f4' target="_blank" >
+  				<img  class='new_album_cover' src= '{{item.song_image}}' alt="alternatetext">
+  				<a class="link_target" href='{{item.song_preview}}' target="_blank" >
 				<img id='play_button' class='new_play' src="../static/images/play.png">
               </a>
   			</div>
 	  		<div class="new_recommendation_name">
-	  			<p>No words</p>
-	  			
-
+	  			<p>{{item.user_name}} Recommends {{item.song_name}} </p>
 	  		</div>
-  		</div>
-
-  		
-  		{%if recommendations %}
-  		{%for item in recommendations %}
-  		<div class="recommendation_name">
-  			<p>{{item.user_name}} Recommends {{item.song_name}} by {{item.artist_name}}</p>
-
+	  		 <a href="{{ item.song_url }}" target="_blank">
+                        <button class='open_in_spotify'> Open in Spotify</button>
+               </a>
   		</div>
   		{% endfor %}
   		{% endif %}
+  		
+  		
   	</div>
 		  
 		  	

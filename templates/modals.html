@@ -3,10 +3,12 @@
 <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal_container">
 		<div class="modal_header">
-			<h2>Choose a song to recommend!</h2>
+			<h2 id='user_name'>{{user_name}}</h2>
+			<h2>, Choose a song to recommend!</h2>
 		</div>
-		<input id="modal_add_song"  class="add_song modal_add_song" type="submit" name="Done">
-
+		<a href="{{ url_for('friends') }}">
+		<input id="modal_add_song" class="add_song modal_add_song" type="submit" value="Done" name="submit">
+	</a>
 	{% if modal_recommendations %}
 	{% for i in range(0, modal_recommendations|length) %}
 	<ul>
@@ -51,7 +53,7 @@
 {% block script %}
 <script type="text/javascript">
 	$(document).ready(function(){
-		console.log('window is loaded');
+		//console.log('window is loaded');
 		$('#exampleModal').modal('show');
 	})
 
