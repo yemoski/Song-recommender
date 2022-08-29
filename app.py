@@ -42,7 +42,7 @@ def home():
 
 			text = request.form.get("genre")
 			result = Spotify.get_popular_song(text)
-			pprint(result)
+			#pprint(result)
 		
 			
 			return render_template("index.html",result = result, text = text)
@@ -94,7 +94,7 @@ def friends():
 
 	database = recommendations.query.all()
 	database.reverse()
-	print(database)
+	
 	return render_template("friends.html", recommendations=database, recommendation_result=result)
 
 
@@ -107,8 +107,7 @@ def modal():
 @app.route('/test', methods=['POST'])
 def test():
 	output = request.get_json()
-	print('output here')
-	#pprint(output)
+
 	
 	recommendation = recommendations(output['user_name'], output['name'], output['image'],output['preview'],output['url'])
 	db.session.add(recommendation)
