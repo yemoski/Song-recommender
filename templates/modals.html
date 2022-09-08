@@ -7,8 +7,9 @@
 			<h2>, Choose a song to recommend!</h2>
 		</div>
 		<a href="{{ url_for('friends') }}">
-		<input id="modal_add_song" class="add_song modal_add_song" type="submit" value="Done" name="submit">
-	</a>
+			<input id="modal_add_song" class="add_song modal_add_song" type="submit" value="Done" name="submit">
+		</a>
+
 	{% if modal_recommendations %}
 	{% for i in range(0, modal_recommendations|length) %}
 	<ul>
@@ -55,6 +56,10 @@
 	$(document).ready(function(){
 		//console.log('window is loaded');
 		$('#exampleModal').modal('show');
+		$('#exampleModal').modal({
+    backdrop: 'static',
+    keyboard: false
+})
 	})
 
 	var recommendation = {{ modal_recommendations|tojson }};

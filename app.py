@@ -5,6 +5,7 @@ from pprint import pprint
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import timedelta
+import bible
 
 app = Flask(__name__)
 app.secret_key = 'spotify'
@@ -37,6 +38,7 @@ class recommendations(db.Model):
 
 @app.route("/", methods = ["GET", "POST"])
 def home():
+	verse = bible.get_verse()
 	if request.method == "POST":
 		if request.form.get('filter') == 'most_popular':
 
@@ -45,13 +47,13 @@ def home():
 			#pprint(result)
 		
 			
-			return render_template("index.html",result = result, text = text)
+			return render_template("index.html",result = result, text = text, verse=verse)
 		elif request.form.get('filter') == 'least_popular':
 			text = request.form.get('genre')
 			result = Spotify.get_least_popular_song(text)
-			return render_template("index.html",result = result, text=text)
+			return render_template("index.html",result = result, text=text, verse=verse)
 
-	return render_template("index.html",result=None, text=None )
+	return render_template("index.html",result=None, text=None, verse=verse)
 
 @app.route("/contact_us")
 def contact():
