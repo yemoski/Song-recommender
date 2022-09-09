@@ -112,7 +112,7 @@ def test():
 	output = request.get_json()
 
 	
-	recommendation = recommendations(output['user_name'], output['name'], output['image'],output['preview'],output['url'])
+	recommendation = recommendations(output['user_name'], output['name'][:35]+'...', output['image'],output['preview'],output['url'])
 	pprint(recommendation)
 	db.session.add(recommendation)
 	db.session.commit()
