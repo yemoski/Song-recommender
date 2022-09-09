@@ -113,6 +113,7 @@ def test():
 
 	
 	recommendation = recommendations(output['user_name'], output['name'], output['image'],output['preview'],output['url'])
+	pprint(recommendation)
 	db.session.add(recommendation)
 	db.session.commit()
 	return render_template('test.html')
