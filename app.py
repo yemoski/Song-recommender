@@ -86,11 +86,12 @@ def friends():
 			#recomendation = recommendations(user_namee,song_namee,artist_namee)
 			text = song_namee + ' ' + artist_namee
 			result = Spotify.get_popular_song(text)
-			#pprint(result)
-			#db.session.add(recomendation)
-			#db.session.commit()
+			
 
-		return render_template('modals.html', modal_recommendations=result, user_name=user_namee)
+
+
+			return render_template('modals.html', modal_recommendations=result, user_name=user_namee)
+
 
 
 
