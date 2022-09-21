@@ -4,8 +4,11 @@
 
 
     <div class="big">
-         <h1 class="title"><b>Recommend me a song!</b></h1>
-      <form class="search" method="post" action="{{ url_for('home') }}">
+        <div class="header-title">
+            <h1 class="title"><b>Recommend me a song!</b></h1>
+        </div>
+         <div class="content">
+             <form class="search" method="post" action="{{ url_for('home') }}">
         <div class="examples">
             <p>Genre could be Afro,Grime,Uk Rap,Pop,Country etc </p>
             <p> Artist name could be Central cee,Solatido,Dave,Wizkid etc</p>
@@ -16,17 +19,29 @@
         </div>
  
       <div class="search__field">
+         {% with messages= get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+            <div class="error">
+              <p>{{msg}}</p>
+            </div>
+            {% endfor %}
+        {% endif %}
+      {% endwith %}
             <label class="search__label" for="text"><b>Enter a song genre('Random' for any random song): </b></label>
             <input type="text" id="text" name="genre">
-            <label class='filter__by' for="cars"><b>Filter by:</b></label>
+           
+                 <label class='filter__by' for="cars"><b>Filter by:</b></label>
             <select id="filter" name="filter">
                 <option value="most_popular">Popularity(Most Popular)</option>
                <!-- <option value="new">Date Released (New)</option> -->
                 <option value="least_popular">Populariy (Least Popular)</option>
                <!-- <option value="old">Date Released (Old)</option> -->
             </select>
-            <input id='submit_button' type="submit" name="submit">
-            <span class="validity"></span>
+            <input class="submit-button" id='submit_button' type="submit" name="submit">
+           
+           
+           
         </div>
     </form>
         {% if result %}
@@ -78,6 +93,8 @@
         {% endfor %}
 </div>
 {% endif %}
+         </div>
+      
     </div>
 
  

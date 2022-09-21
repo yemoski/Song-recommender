@@ -3,16 +3,17 @@ var container = document.getElementById('recommendation_container');
 var song_name = document.getElementById('modal_song_name');
 var user_name = document.getElementById('user_name');
 var artist_name = document.getElementById('artist_name');
-
+var rate_button = document.getElementById('rate_button');
 
 
 
 document.addEventListener('click', function(e) {
     e = e || window.event;
-    var target = e.target || e.srcElement,
-    target = $(target).parent().parent().parent().parent();
-    text = $(target).attr('id');
-    console.log(user_name.innerHTML);
+    var targeta = e.target || e.srcElement,
+    target = $(targeta).parent().parent().parent().parent();
+
+    text = $(target).attr('id'); 
+ 
     //text = target.textContent || target.innerText;  
     if (text.length <=2 ){
       datas = recommendation[text]
@@ -27,6 +28,11 @@ document.addEventListener('click', function(e) {
       
       
     }
+
+    newtarget = $(targeta);
+    id = $(newtarget).attr('id');
+    var song_rating = document.getElementById('');
+    //console.log(friend_recommendation);
 }, false);
 
 
@@ -35,7 +41,14 @@ document.addEventListener('click', function(e) {
 
 
 
-
+rate_button.addEventListener("click", function(e)  {
+  rating_element = rate_button.previousElementSibling
+  rating_value = rating_element.value
+  rating_element_id = rating_element.getAttribute('id');
+  console.log(rating_element_id)
+  console.log(rating_element.value);
+  console.log('rating above');
+});
 
 
 

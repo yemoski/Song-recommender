@@ -1,15 +1,12 @@
-
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
 
 .service-list {
     list-style-type: none;
     margin:5px;
-    padding-left: 50px;
+    padding-left: 30px;
     float: left;
     display: inline-block;
 
-}
-.result {
-	background-color:#1db954 ;
 }
 
 .header{
@@ -22,6 +19,7 @@
 
    
 }
+
 .header h1{
     color: white;
     display: block;
@@ -66,6 +64,7 @@ nav ul li a:hover{
     float: right;
     width: 335px;
     height: fit-content;
+    margin: 20px;
 
 }
 .verse h3{
@@ -89,7 +88,17 @@ nav ul li a:hover{
 .filter__by {
 	color: black;
 }
-
+.submit-button{
+  background-color: black; 
+  border: none;
+  color: white;
+  border-radius: 30px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 
 .search__field {
 	margin: auto;
@@ -97,6 +106,8 @@ nav ul li a:hover{
 	color:  white;
 	margin-top: 15px;
 	display: inline-block;
+	margin-left: 50px;
+	margin-right: 50px;
 }
 
 .title {
@@ -107,7 +118,7 @@ nav ul li a:hover{
 }
 
 .examples {
-	text-align: center;
+	margin: 20px;
 	float: left;
 	display: block;
 }
@@ -115,7 +126,7 @@ nav ul li a:hover{
 
 .big {
 	position: absolute;
-  background-color:#1db954 ;
+  background-color: black;
   display: block;
   overflow: auto;
   width: 100%;
@@ -124,6 +135,18 @@ nav ul li a:hover{
   
 
 
+}
+.header-title{
+	background-color: #1db954;
+	margin: 20px;
+	border-radius: 30px;
+}
+.content{
+	background-color: #1db954;
+	margin: 20px;
+	height: 100%;
+	border-radius: 10px;
+	overflow: auto;
 }
 
 .each_song {
@@ -149,12 +172,22 @@ nav ul li a:hover{
 	top: 0;
 	left: 0;
 }
+.open_in_spotify{
+	background-color: black;
+	color: white;
+	border-radius: 10px;
+}
 .album_cover:hover {
 	filter: grayscale(100%);
 
 	transition:  filter 0.5s ease-in-out;
 }
-/******Friends.html ****/
+
+.result {
+	background-color:#1db954 ;
+}
+
+/***********************************************************Friends.html *****************************************************/
 .friends_main{
 	 position: absolute;
   background-color:#1db954 ;
@@ -240,9 +273,10 @@ nav ul li a:hover{
 .error{
 	background-color:#FFCCCB  ;
 	color: black;
+	display: block;
 	text-align: center;
 	margin-top: 20px;
-	margin-bottom: -86px;
+	
 }
 .album_cover_image{
 	display: inline-block;
@@ -272,7 +306,7 @@ nav ul li a:hover{
 
 
 
-/******modal.html*****//
+/*********************************************************************************modal.html***************************************************//
 
 .modal {
 	width: 100%;

@@ -25,31 +25,39 @@ class recommendations(db.Model):
 	song_image = db.Column(db.Text(), nullable=True)
 	song_preview = db.Column(db.Text(), nullable=True)
 	song_url = db.Column(db.Text(), nullable=True)
+	song_rating = db.Column(db.Integer,nullable=True )
 
-	def __init__(self,user_name,song_name, image,preview, url):
+	def __init__(self,user_name,song_name, image,preview, url,rating):
 		self.user_name = user_name
 		self.song_name = song_name
 		self.song_image = image
 		self.song_preview = preview
 		self.song_url = url
+		self.song_rating = rating
 
 	def __repr__(self):
-		return f'<user_name: {self.user_name} song_name: {self.song_name} song_image: {self.song_image} song_preview: {self.song_preview} song_url: {self.song_url}'
+		return f'<user_name: {self.user_name} song_name: {self.song_name} song_image: {self.song_image} song_preview: {self.song_preview} song_url: {self.song_url} song_rating: {self.song_rating}'
 
 @app.route("/", methods = ["GET", "POST"])
 def home():
 	verse = bible.get_verse()
 	if request.method == "POST":
-		if request.form.get('filter') == 'most_popular':
+		text = request.form.get("genre")
+		print('hello')
+		print(text)
+		if text == '':
+			flash('Please enter a genre')
+	
+		if request.form.get('filter') == 'most_popular' and text!='':
 
-			text = request.form.get("genre")
+
 			result = Spotify.get_popular_song(text)
 			#pprint(result)
 		
 			
 			return render_template("index.html",result = result, text = text, verse=verse)
-		elif request.form.get('filter') == 'least_popular':
-			text = request.form.get('genre')
+		elif request.form.get('filter') == 'least_popular' and text!='':
+			
 			result = Spotify.get_least_popular_song(text)
 			return render_template("index.html",result = result, text=text, verse=verse)
 
@@ -67,7 +75,7 @@ def contact():
 def friends():
 	result = None
 	
-	if request.method =="POST":
+	if request.method =="POST" and 'submit' in request.form:
 		song_namee = request.form['song_name']
 		artist_namee = request.form['artist_name']
 		user_namee = request.form['user_name']
@@ -92,13 +100,35 @@ def friends():
 
 			return render_template('modals.html', modal_recommendations=result, user_name=user_namee)
 
+	if request.method =="POST" and 'Rate' in request.form:
+		ratings = request.form['rating']
+		try:
+		    ratings = int(ratings)
+		    if int(ratings) < 1 or int(ratings) > 10:
+		        flash('Please enter a number between 1 and 10')
+		    else:
+		    	flash('Song rated')
+				
+		except ValueError:
+			flash('please enter a  number between 1 and 10')
+	
+		
+		
 
 
 
 	database = recommendations.query.all()
 	database.reverse()
+	database_dict = []
+
+	for x in database:
+		row = {'user_name': x.user_name, 'song_name': x.song_name, 'song_image': x.song_image, 'song_preview':x.song_preview, 'song_url':x.song_url}
+		database_dict.append(row)
+
+
+
 	
-	return render_template("friends.html", recommendations=database, recommendation_result=result)
+	return render_template("friends.html", recommendations=database, recommendation_result=result, database_dict = database_dict)
 
 
 @app.route('/modal', methods=['POST'])
@@ -110,12 +140,15 @@ def modal():
 @app.route('/test', methods=['POST'])
 def test():
 	output = request.get_json()
+	song_name = output['name']
+	if len(song_name) >= 39:
+		song_name = song_name[:35]+'...'
 
 	
-	recommendation = recommendations(output['user_name'], output['name'][:35]+'...', output['image'],output['preview'],output['url'])
+	recommendation = recommendations(output['user_name'],song_name , output['image'],output['preview'],output['url'], 0)
 	pprint(recommendation)
 	db.session.add(recommendation)
-	db.session.commit()
+	#db.session.commit()
 	return render_template('test.html')
 
 	

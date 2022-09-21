@@ -30,23 +30,49 @@
 		  
 	<hr >
 	{%if recommendations %}
-  	{%for item in recommendations %}
+
+  
+  	{% for i in range(0, recommendations|length) %}
 
   	<div id='recommendation_container' class="recommendation_container">
-  		<div class="each_new_recommendation">
+  		<div id='{{i|safe}}' class="each_new_recommendation">
+  			{% if recommendations[i].song_preview != None %}
   			<div class="album_cover_image">
-  				<img  class='new_album_cover' src= '{{item.song_image}}' alt="alternatetext">
-  				<a class="link_target" href='{{item.song_preview}}' target="_blank" >
-				<img id='play_button' class='new_play' src="../static/images/play.png">
+  				<img  class='new_album_cover' src= '{{recommendations[i].song_image}}' alt="alternatetext">
+  				<a class="link_target" href='{{recommendations[i].song_preview}}' target="_blank" >
+				<img  id='play_button' class='new_play' src="../static/images/play.png">
+				
               </a>
   			</div>
+  			{% else %}
+  			<div class="album_cover_image">
+  				<img  class='new_album_cover' src= '{{recommendations[i].song_image}}' alt="alternatetext">
+  				<a class="link_target" target="_blank" >
+				<img onclick='myfunction()' id='play_button' class='new_play' src="../static/images/play.png">
+				 <script type="text/javascript">
+                    function myfunction(){
+                         alert('Sorry preview for this song is unavailable');}
+                  </script>
+              </a>
+  			</div>
+  			{% endif %}
+
+
 	  		<div class="new_recommendation_name">
-	  			<p>{{item.user_name}} Recommends {{item.song_name}} </p>
+	  			<p>{{recommendations[i].user_name}} Recommends {{recommendations[i].song_name}} </p>
 	  		</div>
-	  		 <a href="{{ item.song_url }}" target="_blank">
+	  		 <a href="{{ recommendations[i].song_url }}" target="_blank">
                         <button class='open_in_spotify'> Open in Spotify</button>
                </a>
+           
+               <div class="rating_center">
+             	<input type="text" id='{{i|safe}}'name="rating" placeholder="Rate this song from 1-10">
+             	  <input id='rate_button' class="rate_button" type="submit" name="Rate" value="Rate">
+               </div>
+           
+             
   		</div>
+  			<hr>
   		{% endfor %}
   		{% endif %}
   		
@@ -61,4 +87,10 @@
 	
 </div>
 
+{% endblock %}
+
+{% block script2 %}
+<script type="text/javascript">
+	var friend_recommendation = {{ database_dict|tojson}};
+</script>
 {% endblock %}
