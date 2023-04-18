@@ -1,13 +1,17 @@
 import spotipy
 import random
 from spotipy.oauth2 import SpotifyClientCredentials
-import config
+#import config
+import os
+from pprint import pprint
+from dotenv import load_dotenv
+
 
 
 
 
 def get_song(search_str):
-    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=config.client_id,client_secret=config.client_secret))
+    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=os.environ['client_id'],client_secret=os.environ['client_secret']))
     y = []
 
     data = {'name': [], 'image': []}
@@ -29,7 +33,9 @@ def get_song(search_str):
 
 
 def get_popular_song(search_str):
-    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=config.client_id,client_secret=config.client_secret))
+    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=os.environ['client_id'],client_secret=os.environ['client_secret']))
+   
+
 
     list = []
 
@@ -65,7 +71,7 @@ def get_popular_song(search_str):
     return ordered_list
 
 def get_least_popular_song(search_str):
-    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=config.client_id,client_secret=config.client_secret))
+    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=os.environ['client_id'],client_secret=os.environ['client_secret']))
 
     list = []
     if search_str.lower()=='random':
